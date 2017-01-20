@@ -1,3 +1,5 @@
+## This commit is the default Q-learning agent, without optimization
+
 import random
 import math
 from environment import Agent, Environment
