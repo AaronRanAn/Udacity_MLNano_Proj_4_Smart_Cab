@@ -44,7 +44,7 @@ class LearningAgent(Agent):
         if type == 'inverse':
             decay_func = 1.0/(self.trial_cnt ** 2)
         if type == 'exponential':
-            decay_func = 0.9932**self.trial_cnt
+            decay_func = 0.995**self.trial_cnt
         if type == 'natural':
             decay_func = 2.71828 ** (-(0.89*self.trial_cnt))
         if type == 'cos':
@@ -77,7 +77,7 @@ class LearningAgent(Agent):
             self.epsilon = 0
         else:
             self.trial_cnt +=1
-            self.epsilon = self.decay_epsilion(type='exponential')
+            self.epsilon = self.decay_epsilion(type='cos')
         return None
 
     def build_state(self):
@@ -185,7 +185,7 @@ class LearningAgent(Agent):
         self.createQ(next_state)
 
         if self.learning:
-           self.Q[state][action] = (1-self.alpha) * self.Q[state][action] + (self.alpha) * ( reward  + self.get_maxQ(next_state))
+            self.Q[state][action] = (1-self.alpha) * self.Q[state][action] + (self.alpha * reward)
 
 
         return
