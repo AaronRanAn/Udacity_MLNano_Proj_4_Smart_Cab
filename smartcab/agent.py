@@ -77,7 +77,7 @@ class LearningAgent(Agent):
             self.epsilon = 0
         else:
             self.trial_cnt +=1
-            self.epsilon = self.decay_epsilion(type='exponential')
+            self.epsilon = self.decay_epsilion(type='cos')
         return None
 
     def build_state(self):
