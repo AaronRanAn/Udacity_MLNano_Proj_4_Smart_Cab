@@ -51,6 +51,9 @@ class LearningAgent(Agent):
             decay_func = np.cos(self.trial_cnt * 0.0021)
         if type == 'exp':
             decay_func =  math.exp(-0.09 * self.trial_cnt)
+        # if type == 'sigmoid':
+        #     decay_func = 1 - (1/(1+math.exp(-k*self.alpha*(self.trial_count-t0))))
+        # choosing k and t0 emprically.
 
         return decay_func
 
@@ -77,7 +80,7 @@ class LearningAgent(Agent):
             self.epsilon = 0
         else:
             self.trial_cnt +=1
-            self.epsilon = self.decay_epsilion(type='cos')
+            self.epsilon = self.decay_epsilion(type='exponential')
         return None
 
     def build_state(self):
